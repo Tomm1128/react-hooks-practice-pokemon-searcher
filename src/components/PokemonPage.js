@@ -8,9 +8,12 @@ import { getPokemon } from "../services/fetchers"
 function PokemonPage() {
   const [pokemonList, setPokemonList] = useState(null)
   const [search, setSearch] = useState("")
+  // const [fetchTrigger, setFetchTrigger] = useState(false)
 
   useEffect(() => {
-    getPokemon().then((pokemons) => setPokemonList(pokemons))
+    getPokemon().then((pokemons) => {
+      setPokemonList(pokemons)
+    })
   }, [])
 
   if (!pokemonList) {
