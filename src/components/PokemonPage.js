@@ -25,7 +25,7 @@ function PokemonPage() {
   }
 
   const filteredPokemon = pokemonList.filter((pokemon) => {
-    return search == "" ? true : pokemon.name.includes(search)
+    return search === "" ? true : pokemon.name.includes(search)
   })
 
   return (

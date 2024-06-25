@@ -1,5 +1,4 @@
 const database = "http://localhost:3001/pokemon/"
-const api = "https://pokeapi.co/api/v2/pokemon/"
 
 const getPokemon = () => {
   return fetch(database).then((resp) => resp.json())
