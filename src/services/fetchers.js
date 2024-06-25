@@ -1,7 +1,19 @@
-const api = "http://localhost:3001/pokemon/"
+const database = "http://localhost:3001/pokemon/"
+const api = "https://pokeapi.co/api/v2/pokemon/"
 
 const getPokemon = () => {
-  return fetch(api).then((resp) => resp.json())
+  return fetch(database).then((resp) => resp.json())
 }
 
-export { getPokemon }
+const createPokemon = (newPokemon) => {
+  return fetch(database, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newPokemon),
+  }).then((resp) => resp.json())
+}
+
+export { getPokemon, createPokemon }
