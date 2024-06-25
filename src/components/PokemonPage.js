@@ -7,6 +7,7 @@ import { getPokemon } from "../services/fetchers"
 
 function PokemonPage() {
   const [pokemonList, setPokemonList] = useState(null)
+  const [search, setSearch] = useState("")
 
   useEffect(() => {
     getPokemon().then((pokemons) => setPokemonList(pokemons))
@@ -16,15 +17,19 @@ function PokemonPage() {
     return <h1>Loading...</h1>
   }
 
+  const filteredPokemon = pokemonList.filter((pokemon) => {
+    return search == "" ? true : pokemon.name.includes(search)
+  })
+
   return (
     <Container>
       <h1>Pokemon Searcher</h1>
       <br />
       <PokemonForm />
       <br />
-      <Search />
+      <Search searchInput={search} onSearch={setSearch} />
       <br />
-      <PokemonCollection pokemonList={pokemonList} />
+      <PokemonCollection pokemonList={filteredPokemon} />
     </Container>
   )
 }
