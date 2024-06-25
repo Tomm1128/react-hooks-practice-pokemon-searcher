@@ -9,7 +9,7 @@ const initializeForm = {
   backUrl: "",
 }
 
-function PokemonForm() {
+function PokemonForm({ reloadPokemon }) {
   const [formData, setFormData] = useState(initializeForm)
 
   const updateFormData = (event) => {
@@ -32,7 +32,7 @@ function PokemonForm() {
       },
     }
 
-    createPokemon(newPokemon)
+    createPokemon(newPokemon).then(() => reloadPokemon())
   }
 
   return (

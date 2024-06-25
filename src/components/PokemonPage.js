@@ -8,16 +8,20 @@ import { getPokemon } from "../services/fetchers"
 function PokemonPage() {
   const [pokemonList, setPokemonList] = useState(null)
   const [search, setSearch] = useState("")
-  // const [fetchTrigger, setFetchTrigger] = useState(false)
+  const [fetchTrigger, setFetchTrigger] = useState(false)
 
   useEffect(() => {
     getPokemon().then((pokemons) => {
       setPokemonList(pokemons)
     })
-  }, [])
+  }, [fetchTrigger])
 
   if (!pokemonList) {
     return <h1>Loading...</h1>
+  }
+
+  const triggerFetch = () => {
+    setFetchTrigger(!fetchTrigger)
   }
 
   const filteredPokemon = pokemonList.filter((pokemon) => {
@@ -28,7 +32,7 @@ function PokemonPage() {
     <Container>
       <h1>Pokemon Searcher</h1>
       <br />
-      <PokemonForm />
+      <PokemonForm reloadPokemon={triggerFetch} />
       <br />
       <Search searchInput={search} onSearch={setSearch} />
       <br />
